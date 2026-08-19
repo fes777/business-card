@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Стариков Анатолий - Элитная недвижимость</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,8 +13,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a3c34 0%, #2d5a4f 100%);
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -30,26 +31,27 @@
             left: 0;
             right: 0;
             height: 300px;
-            opacity: 0.15;
+            opacity: 0.08;
             z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300'%3E%3Cpath fill='%239CAF88' d='M0,300 L0,250 L50,250 L50,200 L100,200 L100,220 L150,220 L150,180 L200,180 L200,240 L250,240 L250,150 L300,150 L300,200 L350,200 L350,250 L400,250 L400,190 L450,190 L450,230 L500,230 L500,170 L550,170 L550,210 L600,210 L600,160 L650,160 L650,200 L700,200 L700,240 L750,240 L750,180 L800,180 L800,220 L850,220 L850,150 L900,150 L900,190 L950,190 L950,230 L1000,230 L1000,200 L1050,200 L1050,250 L1100,250 L1100,210 L1150,210 L1150,260 L1200,260 L1200,300 Z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300'%3E%3Cpath fill='%23D4AF37' d='M0,300 L0,250 L50,250 L50,200 L100,200 L100,220 L150,220 L150,180 L200,180 L200,240 L250,240 L250,150 L300,150 L300,200 L350,200 L350,250 L400,250 L400,190 L450,190 L450,230 L500,230 L500,170 L550,170 L550,210 L600,210 L600,160 L650,160 L650,200 L700,200 L700,240 L750,240 L750,180 L800,180 L800,220 L850,220 L850,150 L900,150 L900,190 L950,190 L950,230 L1000,230 L1000,200 L1050,200 L1050,250 L1100,250 L1100,210 L1150,210 L1150,260 L1200,260 L1200,300 Z'/%3E%3C/svg%3E");
             background-repeat: repeat-x;
             background-size: cover;
         }
 
         .card {
-            background: linear-gradient(145deg, #f0f7f4 0%, #e8f0ec 100%);
+            background: linear-gradient(145deg, #2c2c2c 0%, #3a3a3a 50%, #2c2c2c 100%);
             border-radius: 25px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25), 
-                        0 0 0 1px rgba(156,175,136,0.2) inset;
-            padding: 60px 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), 
+                        0 0 0 1px rgba(212,175,55,0.3) inset,
+                        0 0 80px rgba(212,175,55,0.1);
             max-width: 500px;
             width: 100%;
             text-align: center;
             position: relative;
             z-index: 1;
             animation: fadeIn 1s ease-out;
-            border: 2px solid #9CAF88;
+            border: 2px solid #D4AF37;
+            overflow: hidden;
         }
 
         @keyframes fadeIn {
@@ -70,56 +72,73 @@
             left: 0;
             right: 0;
             height: 6px;
-            background: linear-gradient(90deg, #50C878, #9CAF88, #50C878);
+            background: linear-gradient(90deg, #D4AF37, #F4E5C2, #D4AF37);
             border-radius: 25px 25px 0 0;
         }
 
-        .logo {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 25px;
-            background: linear-gradient(135deg, #50C878 0%, #2d5a4f 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 25px rgba(80,200,120,0.3);
-            border: 3px solid #9CAF88;
+        /* Фотография - 50% площади */
+        .photo-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 3px solid #D4AF37;
         }
 
-        .logo-icon {
-            font-size: 55px;
-            color: #f0f7f4;
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(44,44,44,0.9), transparent);
+        }
+
+        .content {
+            padding: 30px 35px 40px;
         }
 
         h1 {
-            font-size: 28px;
-            color: #1a3c34;
-            margin-bottom: 8px;
+            font-size: 32px;
+            background: linear-gradient(135deg, #D4AF37 0%, #F4E5C2 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .full-name {
-            font-size: 20px;
-            color: #2d5a4f;
-            margin-bottom: 5px;
+            font-size: 22px;
+            color: #F4E5C2;
+            margin-bottom: 8px;
             font-weight: 600;
-        }
-
-        .subtitle {
-            color: #50C878;
-            font-size: 16px;
-            margin-bottom: 25px;
-            font-weight: 500;
             letter-spacing: 1px;
         }
 
+        .subtitle {
+            color: #D4AF37;
+            font-size: 16px;
+            margin-bottom: 25px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
         .divider {
-            width: 100px;
+            width: 120px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #9CAF88, transparent);
-            margin: 20px auto;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            margin: 25px auto;
         }
 
         .contact-info {
@@ -131,16 +150,18 @@
             align-items: center;
             justify-content: center;
             margin: 18px 0;
-            color: #2d5a4f;
+            color: #F4E5C2;
             font-size: 16px;
             transition: all 0.3s ease;
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-radius: 8px;
+            letter-spacing: 0.5px;
         }
 
         .contact-item:hover {
-            background: rgba(156,175,136,0.15);
-            color: #50C878;
+            background: rgba(212,175,55,0.15);
+            color: #D4AF37;
+            transform: translateX(5px);
         }
 
         .contact-item span {
@@ -148,108 +169,121 @@
         }
 
         .phone {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
-            color: #1a3c34;
+            background: linear-gradient(135deg, #D4AF37, #F4E5C2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
             display: inline-block;
             margin: 15px 0;
-            padding: 10px 25px;
-            border: 2px solid #50C878;
+            padding: 12px 30px;
+            border: 2px solid #D4AF37;
             border-radius: 50px;
             transition: all 0.3s ease;
-            background: transparent;
+            background-color: transparent;
+            letter-spacing: 1px;
         }
 
         .phone:hover {
-            background: linear-gradient(135deg, #50C878, #2d5a4f);
-            color: #f0f7f4;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(80,200,120,0.4);
+            background: linear-gradient(135deg, #D4AF37, #F4E5C2);
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: #2c2c2c;
+            background-clip: unset;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.4);
         }
 
         .telegram {
             display: inline-block;
             margin: 15px 0;
-            padding: 10px 25px;
-            background: linear-gradient(135deg, #9CAF88, #50C878);
-            color: #f0f7f4;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+            color: #2c2c2c;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 16px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(156,175,136,0.3);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+            letter-spacing: 1px;
         }
 
         .telegram:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(156,175,136,0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212,175,55,0.5);
         }
 
         .cta-button {
             display: inline-block;
             margin-top: 25px;
             padding: 16px 45px;
-            background: linear-gradient(135deg, #50C878 0%, #2d5a4f 100%);
-            color: #f0f7f4;
+            background: transparent;
+            color: #D4AF37;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 15px;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 25px rgba(80,200,120,0.4);
+            letter-spacing: 2px;
+            box-shadow: 0 8px 25px rgba(212,175,55,0.2);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 2px solid #D4AF37;
+            text-transform: uppercase;
         }
 
         .cta-button:hover {
+            background: linear-gradient(135deg, #D4AF37, #F4E5C2);
+            color: #2c2c2c;
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(80,200,120,0.5);
-            background: transparent;
-            border-color: #50C878;
-            color: #1a3c34;
+            box-shadow: 0 12px 35px rgba(212,175,55,0.4);
         }
 
         .social-links {
             margin-top: 25px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .social-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #2d5a4f, #1a3c34);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3a3a3a, #2c2c2c);
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: #9CAF88;
+            color: #D4AF37;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 24px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(45,90,79,0.3);
-            border: 2px solid #9CAF88;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 2px solid #D4AF37;
         }
 
         .social-icon:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(80,200,120,0.4);
-            background: linear-gradient(135deg, #50C878, #9CAF88);
-            color: #f0f7f4;
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.4);
+            background: linear-gradient(135deg, #D4AF37, #F4E5C2);
+            color: #2c2c2c;
         }
 
         @media (max-width: 600px) {
-            .card {
-                padding: 40px 25px;
+            .photo-container {
+                height: 320px;
             }
-            h1, .full-name {
-                font-size: 22px;
+            .content {
+                padding: 25px 20px 30px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            .full-name {
+                font-size: 18px;
             }
             .phone {
-                font-size: 18px;
+                font-size: 20px;
             }
         }
     </style>
@@ -258,49 +292,51 @@
     <div class="city-skyline"></div>
     
     <div class="card">
-        <div class="logo">
-            <div class="logo-icon">🏙️</div>
+        <div class="photo-container">
+            <img src="photo.jpg" alt="Стариков Анатолий Юрьевич">
+            <div class="photo-overlay"></div>
         </div>
         
-        <h1>Элитная недвижимость</h1>
-        <p class="full-name">Стариков Анатолий Юрьевич</p>
-        <p class="subtitle">Москва</p>
-        
-        <div class="divider"></div>
-        
-        <div class="contact-info">
-            <a href="tel:+79261552777" class="phone">+7 (926) 155-27-77</a>
+        <div class="content">
+            <h1>Элитная недвижимость</h1>
+            <p class="full-name">Стариков Анатолий Юрьевич</p>
+            <p class="subtitle">Москва</p>
             
-            <div class="contact-item">
-                📱 <span>Telegram: @fes777</span>
+            <div class="divider"></div>
+            
+            <div class="contact-info">
+                <a href="tel:+79261552777" class="phone">+7 (926) 155-27-77</a>
+                
+                <div class="contact-item">
+                    📱 <span>Telegram: @fes777</span>
+                </div>
+                
+                <div class="contact-item">
+                    📍 <span>Москва, элитная недвижимость</span>
+                </div>
+                
+                <div class="contact-item">
+                    💼 <span>Индивидуальный подбор!</span>
+                </div>
             </div>
             
-            <div class="contact-item">
-                📍 <span>Москва, элитная недвижимость</span>
-            </div>
+            <div class="divider"></div>
             
-            <div class="contact-item">
-                💼 <span>Профессиональный подбор</span>
+            <a href="https://t.me/fes777" class="telegram" target="_blank">Написать в Telegram</a>
+            
+            <br>
+            
+            <a href="tel:+79261552777" class="cta-button">Позвонить</a>
+            
+            <div class="social-links">
+                <a href="https://t.me/fes777" class="social-icon" title="Telegram" target="_blank">✈️</a>
+                <a href="tel:+79261552777" class="social-icon" title="Позвонить"></a>
+                <a href="mailto:contact@homexpert.ru" class="social-icon" title="Email">✉️</a>
             </div>
-        </div>
-        
-        <div class="divider"></div>
-        
-        <a href="https://t.me/fes777" class="telegram" target="_blank">Написать в Telegram</a>
-        
-        <br>
-        
-        <a href="tel:+79261552777" class="cta-button">Позвонить</a>
-        
-        <div class="social-links">
-            <a href="https://t.me/fes777" class="social-icon" title="Telegram" target="_blank">✈️</a>
-            <a href="tel:+79261552777" class="social-icon" title="Позвонить">📞</a>
-            <a href="mailto:contact@homexpert.ru" class="social-icon" title="Email">✉️</a>
         </div>
     </div>
 
     <script>
-        // Плавная прокрутка и анимации
         document.querySelectorAll('a[href^="tel"], a[href^="https://t.me"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 this.style.transform = 'scale(0.95)';
