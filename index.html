@@ -2,9 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Стариков Анатолий - Элитная недвижимость</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -13,338 +16,298 @@
         }
 
         body {
-            font-family: 'Playfair Display', serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #0f0f0f 100%);
+            color: #f5f5f5;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Контур города на фоне */
-        .city-skyline {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 300px;
-            opacity: 0.08;
-            z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300'%3E%3Cpath fill='%23D4AF37' d='M0,300 L0,250 L50,250 L50,200 L100,200 L100,220 L150,220 L150,180 L200,180 L200,240 L250,240 L250,150 L300,150 L300,200 L350,200 L350,250 L400,250 L400,190 L450,190 L450,230 L500,230 L500,170 L550,170 L550,210 L600,210 L600,160 L650,160 L650,200 L700,200 L700,240 L750,240 L750,180 L800,180 L800,220 L850,220 L850,150 L900,150 L900,190 L950,190 L950,230 L1000,230 L1000,200 L1050,200 L1050,250 L1100,250 L1100,210 L1150,210 L1150,260 L1200,260 L1200,300 Z'/%3E%3C/svg%3E");
-            background-repeat: repeat-x;
-            background-size: cover;
+            overflow-x: hidden;
         }
 
         .card {
-            background: linear-gradient(145deg, #2c2c2c 0%, #3a3a3a 50%, #2c2c2c 100%);
-            border-radius: 25px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), 
-                        0 0 0 1px rgba(212,175,55,0.3) inset,
-                        0 0 80px rgba(212,175,55,0.1);
-            max-width: 500px;
+            display: flex;
+            flex-direction: row;
+            background: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 24px;
             width: 100%;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 1s ease-out;
-            border: 2px solid #D4AF37;
+            max-width: 780px;
             overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            position: relative;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card::before {
-            content: '';
+        /* ===== НОВОЕ: Декоративные золотые линии в правом верхнем углу ===== */
+        .corner-decoration {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #D4AF37, #F4E5C2, #D4AF37);
-            border-radius: 25px 25px 0 0;
+            top: 28px;
+            right: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 10;
         }
 
-        /* Фотография - 50% площади */
-        .photo-container {
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
+        .corner-decoration .line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37 30%, #F4D03F 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Три линии разной длины — эффект «лесенки» */
+        .corner-decoration .line:nth-child(1) {
+            width: 70px;
+        }
+        .corner-decoration .line:nth-child(2) {
+            width: 50px;
+        }
+        .corner-decoration .line:nth-child(3) {
+            width: 30px;
+        }
+
+        .photo-side {
+            flex: 1;
+            min-height: 420px;
             position: relative;
-            border-bottom: 3px solid #D4AF37;
+            overflow: hidden;
         }
 
-        .photo-container img {
+        .photo-side img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center top;
+            display: block;
+            transition: transform 0.6s ease;
         }
 
-        .photo-overlay {
+        .card:hover .photo-side img {
+            transform: scale(1.03);
+        }
+
+        .photo-side::after {
+            content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 100px;
-            background: linear-gradient(to top, rgba(44,44,44,0.9), transparent);
+            height: 40%;
+            background: linear-gradient(to top, rgba(15, 15, 15, 0.9), transparent);
+            pointer-events: none;
         }
 
-        .content {
-            padding: 30px 35px 40px;
+        .content-side {
+            flex: 1;
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        h1 {
-            font-size: 32px;
-            background: linear-gradient(135deg, #D4AF37 0%, #F4E5C2 50%, #D4AF37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .full-name {
+        .avatar-badge {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #D4AF37 0%, #AA8C2C 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 22px;
-            color: #F4E5C2;
-            margin-bottom: 8px;
-            font-weight: 600;
-            letter-spacing: 1px;
+            color: #121212;
+            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3);
         }
 
-        .subtitle {
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .title {
+            font-size: 13px;
+            font-weight: 500;
             color: #D4AF37;
-            font-size: 16px;
-            margin-bottom: 25px;
-            font-weight: 400;
-            letter-spacing: 2px;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
 
         .divider {
-            width: 120px;
+            width: 40px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-            margin: 25px auto;
+            background: linear-gradient(90deg, #D4AF37, transparent);
+            margin-bottom: 20px;
         }
 
-        .contact-info {
-            margin: 25px 0;
+        .info {
+            font-size: 14px;
+            color: #b0b0b0;
+            margin-bottom: 28px;
+            line-height: 1.7;
         }
 
-        .contact-item {
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .info-item i {
+            color: #D4AF37;
+            width: 16px;
+            text-align: center;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 18px 0;
-            color: #F4E5C2;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-height: 48px;
+        }
+
+        .btn i {
             font-size: 16px;
-            transition: all 0.3s ease;
-            padding: 10px 15px;
-            border-radius: 8px;
-            letter-spacing: 0.5px;
         }
 
-        .contact-item:hover {
-            background: rgba(212,175,55,0.15);
-            color: #D4AF37;
-            transform: translateX(5px);
+        .btn-primary {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8942E 100%);
+            color: #121212;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .contact-item span {
-            margin-left: 10px;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
         }
 
-        .phone {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #D4AF37, #F4E5C2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            display: inline-block;
-            margin: 15px 0;
-            padding: 12px 30px;
-            border: 2px solid #D4AF37;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            background-color: transparent;
-            letter-spacing: 1px;
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #f5f5f5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .phone:hover {
-            background: linear-gradient(135deg, #D4AF37, #F4E5C2);
-            -webkit-background-clip: unset;
-            -webkit-text-fill-color: #2c2c2c;
-            background-clip: unset;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(212,175,55,0.4);
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
         }
 
-        .telegram {
-            display: inline-block;
-            margin: 15px 0;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
-            color: #2c2c2c;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(212,175,55,0.3);
-            letter-spacing: 1px;
-        }
-
-        .telegram:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(212,175,55,0.5);
-        }
-
-        .cta-button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 16px 45px;
-            background: transparent;
-            color: #D4AF37;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            letter-spacing: 2px;
-            box-shadow: 0 8px 25px rgba(212,175,55,0.2);
-            transition: all 0.3s ease;
-            border: 2px solid #D4AF37;
-            text-transform: uppercase;
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, #D4AF37, #F4E5C2);
-            color: #2c2c2c;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(212,175,55,0.4);
-        }
-
-        .social-links {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #3a3a3a, #2c2c2c);
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #D4AF37;
-            text-decoration: none;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 2px solid #D4AF37;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-5px) rotate(360deg);
-            box-shadow: 0 10px 25px rgba(212,175,55,0.4);
-            background: linear-gradient(135deg, #D4AF37, #F4E5C2);
-            color: #2c2c2c;
-        }
-
-        @media (max-width: 600px) {
-            .photo-container {
-                height: 320px;
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 720px) {
+            .card {
+                flex-direction: column;
+                max-width: 420px;
             }
-            .content {
-                padding: 25px 20px 30px;
+
+            .photo-side {
+                min-height: 320px;
+                max-height: 380px;
             }
-            h1 {
-                font-size: 26px;
+
+            .content-side {
+                padding: 32px 24px;
             }
-            .full-name {
-                font-size: 18px;
+
+            .name {
+                font-size: 24px;
             }
-            .phone {
-                font-size: 20px;
+
+            /* Скрываем декоративные линии на мобильных — они будут мешать */
+            .corner-decoration {
+                display: none;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .photo-side {
+                min-height: 280px;
+            }
+            .content-side {
+                padding: 28px 20px;
+            }
+            .name {
+                font-size: 22px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="city-skyline"></div>
-    
-    <div class="card">
-        <div class="photo-container">
-            <img src="photo.jpg" alt="Стариков Анатолий Юрьевич">
-            <div class="photo-overlay"></div>
-        </div>
-        
-        <div class="content">
-            <h1>Элитная недвижимость</h1>
-            <p class="full-name">Стариков Анатолий Юрьевич</p>
-            <p class="subtitle">Москва</p>
-            
-            <div class="divider"></div>
-            
-            <div class="contact-info">
-                <a href="tel:+79261552777" class="phone">+7 (926) 155-27-77</a>
-                
-                <div class="contact-item">
-                    📱 <span>Telegram: @fes777</span>
-                </div>
-                
-                <div class="contact-item">
-                    📍 <span>Москва, элитная недвижимость</span>
-                </div>
-                
-                <div class="contact-item">
-                    💼 <span>Индивидуальный подбор!</span>
-                </div>
-            </div>
-            
-            <div class="divider"></div>
-            
-            <a href="https://t.me/fes777" class="telegram" target="_blank">Написать в Telegram</a>
-            
-            <br>
-            
-            <a href="tel:+79261552777" class="cta-button">Позвонить</a>
-            
-            <div class="social-links">
-                <a href="https://t.me/fes777" class="social-icon" title="Telegram" target="_blank">✈️</a>
-                <a href="tel:+79261552777" class="social-icon" title="Позвонить"></a>
-                <a href="mailto:contact@homexpert.ru" class="social-icon" title="Email">✉️</a>
-            </div>
-        </div>
-    </div>
 
-    <script>
-        document.querySelectorAll('a[href^="tel"], a[href^="https://t.me"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-        });
-    </script>
+    <main class="card">
+        <!-- НОВОЕ: Декоративные золотые линии -->
+        <div class="corner-decoration">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="photo-side">
+            <img src="photo.jpg" alt="Стариков Анатолий Юрьевич">
+        </div>
+
+        <div class="content-side">
+            <div class="avatar-badge">АС</div>
+            <h1 class="name">Стариков Анатолий</h1>
+            <p class="title">Элитная недвижимость</p>
+            <div class="divider"></div>
+
+            <div class="info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Москва</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Индивидуальный подбор</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 (926) 155-27-77</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="tel:+79261552777" class="btn btn-primary">
+                    <i class="fas fa-phone"></i>
+                    Позвонить
+                </a>
+                <a href="https://t.me/fes777" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-telegram-plane"></i>
+                    Telegram
+                </a>
+                <a href="mailto:contact@homexpert.ru" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Email
+                </a>
+            </div>
+        </div>
+    </main>
+
 </body>
 </html>
